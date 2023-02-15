@@ -4,7 +4,7 @@
 
 
 
-      <div class=" col-xs-12 col-sm-12 col-lg-6 col-xxl-4 flex-wrap my-5">
+      <div class=" col-xs-12  col-lg-6 col-xxl-4 flex-wrap my-5">
     
      <div class="card " style="width: 18rem;">
         <img src="/assets/images/cows/{{$image}}"  class="card-img-top" style="width: 300px; height: 200px; object-fit: contain" alt="...">
@@ -24,7 +24,7 @@
             <div>
                 <p class="card-text">Vacinada: {{$isVaccinated ? 'sim' : 'não' }}</p>
               @if ($isAdmin)
-              <p class="card-text"> Dono: {{ $userOwner ?? '' }}</p>   
+              <p class="card-text"> Criador: {{ $userOwner ?? '' }}</p>   
               @endif
                
                 
@@ -45,7 +45,7 @@
             <div class="">
                 
 
-                <a  class="btn btn-success" data-id-cow="{{$id}}"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <a  class="btn btn-success" data-id-cow="{{$id}}"   data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <span>
                         <img src="/assets/images/edit_svg.svg"  alt="">
                         editar    
@@ -59,6 +59,7 @@
                         Deletar    
                     </span> </a> 
             </div>
+            
           </div>
 
         </div>

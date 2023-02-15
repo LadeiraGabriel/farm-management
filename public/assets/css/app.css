@@ -1,4 +1,4 @@
-*{
+*:not(select,span){
     font-family: Poppins;
     overflow-x: hidden ;
      /* border: 1px solid orange;  */
@@ -6,7 +6,17 @@
 }
 
 
+.logo_farm{
+    border-radius: 100%;
+    width: 100px;
+    height: auto;
+}
 
+.admin--logo{
+    border-radius: 100%;
+    width: 60px;
+    height: auto;
+}
 
 .title-color-gray{
     color: #6C6C6C;
@@ -27,8 +37,8 @@
     font-weight:300;
 }
 
-.form-custom{
-    
+#button-togle{
+   
     
 }
 
@@ -38,9 +48,6 @@
     
     outline: none;
 }
-
-
-
 
 
 
@@ -227,3 +234,18 @@
         width: 8px;
      }
 }
+
+
+@media (max-width: 768px){
+
+    .header-min{
+        font-size: 10px ;
+    }
+    .icon-min{
+        width: 8px;
+    }
+    .body-min{
+        font-size: 8px ;
+    }
+}
+

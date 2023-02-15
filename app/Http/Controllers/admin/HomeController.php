@@ -19,9 +19,10 @@ class HomeController extends Controller
         
         $users = User::where('is_admin',"=","0")->get();
 
+       ;
      
 
-        return view('pages.admin.dashboard',['users' => $users, 'is_admin' => Auth::user()->is_admin]);
+        return view('pages.admin.dashboard',['users' => $users, 'is_admin' => Auth::user()->is_admin]); 
     }
 
    

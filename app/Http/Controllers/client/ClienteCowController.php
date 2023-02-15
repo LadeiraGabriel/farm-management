@@ -18,6 +18,15 @@ class ClienteCowController extends Controller
     }
 
 
+    public function cows(){
+        $user = Auth::user();
+        $cows = Cow::all();
+
+       
+        return view('pages.client.gallery_cows',['cows' => $cows,'is_admin' => $user->is_admin]);
+    }
+
+
     public function create_new_cow(){
 
         $user = Auth::user();

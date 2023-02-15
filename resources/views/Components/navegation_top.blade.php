@@ -1,8 +1,8 @@
 
 <div class="d-flex align-items-center">
 
-<div class="container-toggle" >
-    <img id="button-togle" src="/assets/images/menu.png" style="cursor: pointer" alt="">
+<div class="container-toggle " style="z-index: 1000; margin: 0 10px" >
+    <img id="button-togle" src="/assets/images/menu.png" style="cursor: pointer" alt="" >
 </div>
 
     
@@ -20,8 +20,12 @@
              </li>
 
              <li class="mx-3">
-                <a href="{{route('client.account_farmer')}}" class="text-decoration-none text-black">Minha conta</a> 
+                <a href="{{route('client.my_cows')}}" class="text-decoration-none text-black">Minhas Vacas</a> 
              </li>
+
+             <li class="mx-3">
+               <a href="{{route('client.account_farmer')}}" class="text-decoration-none text-black">Minha conta</a> 
+            </li>
             
             @endif
            

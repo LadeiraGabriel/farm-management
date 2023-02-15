@@ -77,9 +77,9 @@
    
   
   
-     <div  class=" col-sm-12  col-md-12  "  style="padding: 0 20%">
+     <div  class=" col-sm-12  col-md-12  col-xxl-8 offset-xxl-2 "  style="padding: 0 ">
       <div class="p-2">
-        <div class=" mx-xxl-5 px-xxl-5">
+        <div class=" mx-xxl-5 px-xxl-5" style="padding: 0 10px">
             <x-navegation_top isAdmin={{$is_admin}} />
         </div>
         
@@ -88,36 +88,38 @@
            
                  
 
-               <div class="container overflow-hidden ">
-                <div>
-                    <h2 class="overflow-hidden">Minha Conta</h2>
-                </div>
+               <div class="container-fluid overflow-hidden ">
+               
                 
                 <div class="row d-flex justify-content-start my-3   ">
 
+                  <div class="col-sx-12  col-md-10  col-xxl-10 offset-xxl-1  ">
+
+                    <div >
+                      <h2 class="overflow-hidden">Minha Conta</h2>
+                  </div>
                   <table class="table">
                     <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Quantidade de Vacas</th>
-                        <th scope="col"></th>
+                      <tr >
+                        <th class="header-min" scope="col">#</th>
+                        <th class="header-min" scope="col">Nome</th>
+                        <th class="header-min" scope="col">Email</th>
+                        <th  class="header-min" scope="col">Quantidade de Vacas</th>
+                        <th class="header-min" scope="col"></th>
 
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">1</th>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{ count( $user->cows)}}</td>
+                        <th  class="body-min" scope="row">1</th>
+                        <td class="body-min">{{$user->name}}</td>
+                        <td class="body-min">{{$user->email}}</td>
+                        <td class="body-min">{{ count( $user->cows)}}</td>
                         <td>
-                          
                           <a class="btn btn-primary"   data-bs-toggle="modal" data-bs-target="#exampleModal">
                               
-                            <span>
-                                <img src="/assets/images/edit_svg.svg"  alt="">
+                            <span class="body-min">
+                                <img class="icon-min" src="/assets/images/edit_svg.svg"  alt="">
                                 Trocar senha    
                             </span> 
                         </a>
@@ -126,6 +128,7 @@
                      
                     </tbody>
                   </table>
+                </div>
 
                 
 

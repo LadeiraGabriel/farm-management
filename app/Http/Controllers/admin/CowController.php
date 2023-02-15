@@ -28,6 +28,19 @@ class CowController extends Controller
         
     }
 
+    public function select_cow(Request $request ){
+
+
+        if(isset($request->id)){
+            $cow = Cow::find($request->id);
+            $cow['users'] = $cow->users;
+            return $cow;
+        }else{
+            return false;
+        }
+
+    }
+
     
     public function create_cow(){
 
@@ -40,15 +53,16 @@ class CowController extends Controller
 
     public function create_cow_action(Request $request){
        
-         
+         //return $request->other_owners;
        
 
-        $validate = $request->validate([
-            'name' => 'required|max:8',
+         $validate = $request->validate([
+            'name' => 'required|max:15',
             'age' => 'required',
             'weight' => 'required',
             'user_id' => 'required',
-            'image' => 'required|mimes:jpg,png,svg'
+            'image' => 'required|mimes:jpg,png,svg',
+            'other_owners' => 'array'
 
         ]);
 
@@ -75,10 +89,42 @@ class CowController extends Controller
 
         $newCow =  Cow::create($data);
 
+
+        if(isset($request->other_owners) && $request->other_owners != $request->user_id ){
+            foreach($request->other_owners as $owner){
+                $farmer = User::find($owner);
+
+                $farmer->cows_group()->attach($newCow->id);
+
+            } 
+        }
+
         return redirect(route('admin.cows')); 
 
 
-}
+}   
+
+        public function edit_cow(Request $request){
+
+
+
+            $cow = Cow::find($request->id);
+            
+            $users = User::all();
+
+
+           
+        
+            if(isset($cow)){
+                $data['cow'] = $cow;
+            }else{
+                $data = [];
+            }
+
+           
+
+            return view('pages.admin.edit_cow',$data);
+        }
 
 
         public function edit_cow_action( Request $request){
@@ -86,7 +132,7 @@ class CowController extends Controller
     
             $validate = $request->validate([
                 'id' => 'required',
-                'name' => 'max:8',
+                'name' => 'max:15',
                 'age' => 'max:3',
                 'weight' => 'max:5',
                 'user_id' => 'string',

@@ -45,13 +45,13 @@
                        
                         <input class="form-control form-control-md my-2" type="number" id="weight" name="weight" >
 
-                        <div class="my-2">
-                        <label for="user_id" >Pertence à:</label>
-                        <select name="user_id" id="user_id" class="form-select ">
+                        <div class="" style="overflow: hidden;">
+                        <label for="user_id" >Creador:</label>
+                        <select name="user_id" id="user_id" class="form-select creator"   >
                             
-
+                        
                             @foreach ($farmers as $farmer)
-                            <option value="{{$farmer->id}}">
+                            <option  value="{{$farmer->id}}">
                                 {{$farmer->name}}
                             </option>    
                             @endforeach
@@ -61,7 +61,9 @@
                   
                            </select>
                         </div>
-
+                        
+                        
+                       
                         <div class="my-2">
                             <label for="image" >foto da vaca</label>
                            <input class="form-control form-control-md " type="file" id="image" name="image" >

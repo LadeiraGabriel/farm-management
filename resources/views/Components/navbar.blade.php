@@ -12,7 +12,7 @@
         
 
     <div class="mt-5">
-        <img src="/assets/images/logo_dash.png" alt="">
+        <img src="/assets/images/logo_farm.png" class="logo_farm" alt="">
     </div>
 
     <div class="d-flex flex-column align-items-center mt-5">

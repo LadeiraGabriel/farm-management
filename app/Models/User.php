@@ -48,5 +48,10 @@ class User extends Authenticatable
         return $this->hasMany(Cow::class);
     }
 
+    public function cows_group(){
+        return $this->belongsToMany(Cow::class);
+    }
+
+   
 
 }

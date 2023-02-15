@@ -8,7 +8,7 @@
 
         <div class="title--nav--admin d-flex align-items-center">
           
-            <img src="/assets/images/logo.png" class="mx-2" alt="">
+            <img src="/assets/images/logo_farm.png" class="mx-2 admin--logo" alt="" >
           
            <div>Farm Management</div> 
         </div>

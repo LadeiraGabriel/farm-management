@@ -2,7 +2,7 @@
 <x-admin.main >
 
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   {{--  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -48,7 +48,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
 
 
 <div class="container-fluid p-0">
@@ -73,45 +73,71 @@
             
 
 
-                <div class="container">
-                  <div class="row">
-                      <div class="col-12   header-table-fake" >
-                            <div>Nome</div>
-                            <div>E-mail</div>
-                            <div>Quantidade de Vacas</div>
-                            <div></div>
-                           
-                      </div>
+
+                  <table id="datatable" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Quantidade de Vacas</th>
+                            <th></th>
+                            
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
                       @foreach ($users as $user)
-                      <div class="col-12   body-table--fake">
-                       
-                        <div>{{$user->name}}</div>
-                        <div>{{$user->email}}</div>
-                        <div >{{count($user->cows)}}</div>
-                    
-                        <div >
-                          <a class="btn btn-primary"   data-id-farmer="{{$user->id}}"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <tr>
+                            <td>{{$user->name}} </td>
+                            <td> {{$user->email}}       </td>
+                            <td>  {{ count($user->cows) + count($user->cows_group)}}      </td>
+
+                            <td>
+                                
+                              <a class="btn btn-primary"  href="{{ route('admin.edit_farmer',$user->id)}}"  >
                               
-                            <span>
-                                <img src="/assets/images/edit_svg.svg"  alt="">
-                                Editar    
-                            </span> 
-                        </a>
-
+                              <span>
+                                  <img src="/assets/images/edit_svg.svg"  alt="">
+                                  Editar    
+                              </span> 
+                          </a>   
+                        
                         <a class="btn btn-danger" href="{{route('admin.delete_farmer_action',$user->id)}}" >
-                          <span>
-                              <img src="/assets/images/delete_svg.svg"  alt="">
-                              Deletar    
-                          </span> </a>  
-                      </div>    
-                        </div>
+                            <span>
+                                <img src="/assets/images/delete_svg.svg"  alt="">
+                                Deletar    
+                            </span> </a>   
+                        </td>
 
+           
+                        </tr>
                         @endforeach
-                       
-                  </div>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                          <th>Nome</th>
+                          <th>E-mail</th>
+                          <th>Quantidade de Vacas</th>
+                          <th></th>
+                            
+                          
+                        </tr>
+                    </tfoot>
+                </table>
 
 
-                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
                 </div>
 

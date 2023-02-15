@@ -92,7 +92,7 @@
    
   
   
-     <div  class=" col-sm-12  col-md-12  "  style="padding: 0 20%">
+     <div  class=" col-sx-12   offset-lg-1  col-lg-10 offset-xxl-2 col-xxl-8  col-md-12 "  >
       <div class="p-2">
         <div class=" mx-xxl-5 px-xxl-5">
             <x-navegation_top isAdmin={{$is_admin}} />
@@ -111,7 +111,80 @@
                 <div class="row d-flex justify-content-start my-3   ">
 
                     @foreach ($cows as $cow)
-                    <x-card_info_cow name="{{$cow->name}}" id="{{$cow->id}}" routeDelete="{{'client.delete_cows_action'}}"  image="{{$cow->image_path}}" age="{{$cow->age}}" isAdmin={{$is_admin}} weight="{{$cow->weight}}" userOwner="{{$cow->user['name']}}"   isVaccinated="{{$cow->is_vaccinated}}"  />    
+
+
+
+                  
+                 <div class=" col-xs-12  col-lg-6 col-xxl-4 flex-wrap my-5">
+    
+                  <div class="card " style="width: 18rem;">
+                     <img src="/assets/images/cows/{{$cow->image_path}}"  class="card-img-top" style="width: 300px; height: 200px; object-fit: contain" alt="...">
+                     <div class="card-body ">
+                      
+                     
+                       <div class="row mb-2 card-content  "> 
+                         <h5 class="card-title overflow-hidden d-flex " style="color: #6C6C6C; font-weight: 500;padding-left: 15px;">Nome: {{$cow->name}}</h5>
+                         <div class="d-flex justify-content-around">
+                         
+                             <div>
+                             <p class="card-text">Idade: {{$cow->age}} anos</p>
+                        
+                             <p class="card-text">Peso: {{$cow->weight}} Kg</p>
+                             </div>
+                      
+                         <div>
+                             <p class="card-text">Vacinada: {{$cow->is_vaccinated ? 'sim' : 'não' }}</p>
+                           @if ($is_admin)
+                           <p class="card-text"> Criador: {{-- {{ $userOwner ?? '' }} --}}</p>   
+                           @endif
+                            
+                             
+                         </div>
+                         
+                         </div>
+             
+             
+                      
+             
+                        
+                      
+                       
+                   
+                       <div class="d-flex justify-content-around mt-3">
+                         
+                       
+                         <div class="">
+                             
+             
+                             <a  class="btn btn-success"  href="{{route('admin.edit_cow',$cow->id)}}"   {{-- data-bs-toggle="modal" data-bs-target="#exampleModal" --}}>
+                                 <span>
+                                     <img src="/assets/images/edit_svg.svg"  alt="">
+                                     editar    
+                                 </span> </a> 
+                         </div>
+             
+                         <div class="">
+                             <a class="btn btn-danger" href="{{route('delete_cow_action',$cow->id)}}">
+                                 <span>
+                                     <img src="/assets/images/delete_svg.svg" class="object-fit-contain"   alt="">
+                                     Deletar    
+                                 </span> </a> 
+                         </div>
+                         
+                       </div>
+             
+                     </div>
+             
+                       
+                      
+                     </div>
+                   </div> 
+             
+                  
+             
+             </div>
+
+                      
                      @endforeach
                    
 

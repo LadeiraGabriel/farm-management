@@ -12,49 +12,37 @@ class AuthController extends Controller
         //
 
 
-        if (isset(Auth::user()->is_admin)){
-         if (Auth::user()->is_admin) {
+        if (isset(Auth::user()->is_admin) && Auth::user()->is_admin) {
+
             return redirect(route('admin.home'));
-        }else{
+        } else {
             return  view('pages.admin.login');
         }
-        
-    }else {
-            return  view('pages.admin.login');
-        };
-        
-
-        
     }
 
 
-    public function loginAction(Request $request){
+    public function loginAction(Request $request)
+    {
 
         $userRequest = $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6'
         ]);
 
-      
 
 
-        if (Auth::attempt($userRequest,$request->remember)) {
+
+        if (Auth::attempt($userRequest, $request->remember)) {
             return redirect(route('admin.home'));
-        }else{
+        } else {
             return redirect(route('login_farmer'));
         };
-
-
-
-
-
     }
 
 
-    public function index(){
+    public function index()
+    {
         return Auth::user();
-
-        
     }
 
 

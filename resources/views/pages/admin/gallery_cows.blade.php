@@ -4,7 +4,7 @@
 
     
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -36,19 +36,24 @@
 
            
                     <div class="my-2">
-                      <label for="user_id" >Pertence à:</label>
+                      <label for="other_owners "  >Outros Donos:</label>
 
-                    
-                     
-                      <select name="user_id" id="user_id" class="form-select ">
-                        @foreach ($farmers as $farmer) 
-                        <option value="{{$farmer->id}}">{{$farmer->name}}</option>
-             
-                        @endforeach
-                        
-                       </select>
-                       
-                    </div>
+                   
+
+                          <select class="edit form-select" name="other_owners[]" multiple="multiple" style="width: 100%">
+                         
+                              @foreach ($farmers as $farmer)
+                              <option selected value="{{$farmer->id}}">
+                                  {{$farmer->name}}
+                              </option>    
+                              @endforeach
+
+                              
+                             
+                            </select>
+  
+
+                      </div>
                    
            
                    
@@ -86,7 +91,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
 
 
     <div class="container-fluid p-0">
@@ -104,7 +109,7 @@
    
   
   
-     <div class=" col-sm-12  offset-md-2 col-md-8 ">
+     <div class=" col-sx-12   offset-lg-1  col-lg-10 offset-xxl-2 col-xxl-8  col-md-12  ">
       <div class="p-2">
         <x-navegation_top isAdmin={{$is_admin}} />
                  
@@ -119,9 +124,82 @@
                 
                 <div class="row d-flex justify-content-start my-3   ">
                     
-
+                  <div>
+                    
+                  </div>
                  @foreach ($cows as $cow)
-                 <x-card_info_cow name="{{$cow->name}}" id="{{$cow->id}}" routeDelete="{{'delete_cow_action'}}" age="{{$cow->age}}" isAdmin="{{$is_admin}}"   image="{{$cow->image_path}}" weight="{{$cow->weight}}"  isVaccinated="{{$cow->is_vaccinated}}" userOwner="{{$cow->user['name']}}" />
+                
+                 <div class=" col-xs-12  col-lg-6 col-xxl-4 flex-wrap my-5">
+    
+                  <div class="card " style="width: 18rem;">
+                     <img src="/assets/images/cows/{{$cow->image_path}}"  class="card-img-top" style="width: 300px; height: 200px; object-fit: contain" alt="...">
+                     <div class="card-body ">
+                      
+                     
+                       <div class="row mb-2 card-content  "> 
+                         <h5 class="card-title overflow-hidden d-flex " style="color: #6C6C6C; font-weight: 500;padding-left: 15px;">Nome: {{$cow->name}}</h5>
+                         <div class="d-flex justify-content-around">
+                         
+                             <div>
+                             <p class="card-text">Idade: {{$cow->age}} anos</p>
+                        
+                             <p class="card-text">Peso: {{$cow->weight}} Kg</p>
+                             </div>
+                      
+                         <div>
+                             <p class="card-text">Vacinada: {{$cow->is_vaccinated ? 'sim' : 'não' }}</p>
+                           @if ($is_admin)
+                           <p class="card-text"> Donos:  {{count($cow->users)}} </p>   
+                           @endif
+                            
+                             
+                         </div>
+                         
+                         </div>
+             
+             
+                      
+             
+                        
+                      
+                       
+                   
+                       <div class="d-flex justify-content-around mt-3">
+                         
+                       
+                         <div class="">
+                             
+             
+                             <a  class="btn btn-success"  href="{{route('admin.edit_cow',$cow->id)}}"   {{-- data-bs-toggle="modal" data-bs-target="#exampleModal" --}}>
+                                 <span>
+                                     <img src="/assets/images/edit_svg.svg"  alt="">
+                                     editar    
+                                 </span> </a> 
+                         </div>
+             
+                         <div class="">
+                             <a class="btn btn-danger" href="{{route('admin.delete_cow_action',$cow->id)}}">
+                                 <span>
+                                     <img src="/assets/images/delete_svg.svg" class="object-fit-contain"   alt="">
+                                     Deletar    
+                                 </span> </a> 
+                         </div>
+                         
+                       </div>
+             
+                     </div>
+             
+                       
+                      
+                     </div>
+                   </div> 
+             
+                  
+             
+             </div>
+
+
+
                  @endforeach
 
 
