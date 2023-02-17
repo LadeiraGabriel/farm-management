@@ -19,7 +19,7 @@
     </div>
   
         <div class=" d-md-block col-md-2 side-admin " id="side--bar">
-          <x-navbar routeLogout="admin.logout" page="{{route('admin.new_cow')}}"  isAdmin={{1}} />
+          <x-navbar routeLogout="client.logout" page="{{route('client.cows')}}"  isAdmin={{0}} />
         </div>
                   
           
@@ -31,9 +31,9 @@
    
   
   
-     <div class=" col-sm-10  offset-md-2 col-10 {{-- col-md-8 gap-2 offset-xxl-2 col-xxl-10 --}} ">
+     <div class=" col-sm-10  offset-md-2 col-10  ">
       <div class="p-2">
-       {{--  <x-navegation_top isAdmin={{1}} /> --}}
+       
 
 
 
@@ -50,7 +50,7 @@
                             <img src="/assets/images/cows/{{$cow->image_path}}" alt="" style="width: 180px; border-radius: 10%">
                            </div>
                        
-                        <form enctype="multipart/form-data" action="{{route('admin.edit_cows_action')}}" class=" d-flex flex-column form-custom py-3" method="post">
+                        <form enctype="multipart/form-data" action="{{route('client.edit_cows_action')}}" class=" d-flex flex-column form-custom py-3" method="post">
                             @csrf
                          
                             <input type="hidden"  name="id" value="{{$cow->id}}"> 
@@ -64,10 +64,7 @@
                             <label for="weight" >Peso:</label>
                             <input class="form-control form-control-md my-2" placeholder="{{$cow->weight}}" type="number" id="weight" name="weight" >
     
-                            <div class="my-2">
-                            <label for="user_id" >Criador:  {{$cow->user->name}}  </label>
-                          
-                            </div>
+                           
                             
                            
                             
@@ -96,7 +93,7 @@
                     
                            
                             <div>
-                                <input type="submit" class="btn-farm mt-3 " value="Entrar">
+                                <input type="submit" class="btn-farm mt-3 " value="Enviar">
                                 
                             </div>
                     
@@ -145,7 +142,10 @@
                                     <td>{{$cow->user->name}} </td>
                                     <td>{{$cow->user->email}} </td>
                                     <td>{{count($cow->user->cows)}} </td>
-                                    <td> </td>
+                                    <td>
+                                        <img src="/assets/images/star.svg" width="20px" alt="">
+                                        
+                                        criador</td>
                                    
                                 </tr>
                               @foreach ($cow->users as $user)
@@ -158,10 +158,33 @@
                                         
                                    
                                 
-                                <a class="btn btn-danger remove"  data-route-remove={{route('remove_cow_user')}} data-token="{{csrf_token()}}" data-user="{{$user->id}}" data-cow="{{$cow->id}}" >
+                                <a class="btn btn-danger selector"  data-route-add={{route('client.add_user_cow')}} data-route-remove={{route('client.remove_user_cow')}} data-token="{{csrf_token()}}" data-user="{{$user->id}}" data-cow="{{$cow->id}}-user="{{$user->id}}" data-cow="{{$cow->id}}" >
                                     
                                        
                                        - Remover    
+                                    </a>   
+                                </td>
+        
+                   
+                                </tr>
+                                @endforeach
+
+
+
+                                @foreach ($users_not_has_cow as $user)
+                                <tr>
+                                    <td>{{$user->name}} </td>
+                                    <td> {{$user->email}}       </td>
+                                    <td>  {{ count($user->cows) + count($user->cows_group)}}      </td>
+        
+                                    <td>
+                                        
+                                   
+                                
+                                <a class="btn btn-success selector"  data-route-add={{route('client.add_user_cow')}} data-route-remove={{route('client.remove_user_cow')}} data-token="{{csrf_token()}}" data-user="{{$user->id}}" data-cow="{{$cow->id}}" >
+                                    
+                                       
+                                       + Adicionar    
                                     </a>   
                                 </td>
         

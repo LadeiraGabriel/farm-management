@@ -42,44 +42,46 @@ class FarmerController extends Controller
 
     public function edit_farmer(Request $request)
     {
-         $id =  $request->id;
+        $id =  $request->id;
 
         $user = User::find($id);
+        $cows = Cow::all();
+        $listCows = [];
 
+        if(count($user->cows_group) == 0){
+            $listCows = $cows;
+        }else{
 
-
-         $cows = Cow::all();
-        $listCows  = [];
+            foreach($user->cows_group as $cow_user){
+                $listId[] = $cow_user->id; 
+            }
+    
+            $listCows = Cow::whereNotIn('id',$listId)->get();
+        }
 
         
 
-       foreach($cows as $cow){
-
-        if(count($cow->users) == 0){
-            $listCows[] = $cow;
-        }else{
-            foreach($cow->users as $user_cow){
-
-                if($user_cow->id != $user->id ){
-                    $listCows[] = $cow;
-                }
-           } 
-        }
-           
-       }
+      
 
         $data = [
             'cows_not_from_user' => $listCows,
             'user' => $user
-        ]; 
+        ];
 
-        return view('pages.admin.edit_farmer',$data);  
+        return view('pages.admin.edit_farmer', $data); 
 
-        
+      
+
     }
 
 
-    public function cows_from_users_or_not(Request $request)
+
+
+
+
+
+
+    public function add_user_cow(Request $request)
     {
         $user_id =  $request->user_id;
         $cow_id =  $request->cow_id;
@@ -92,23 +94,19 @@ class FarmerController extends Controller
 
         $cows = Cow::all();
         $listCows  = [];
-        foreach($cows as $cow){
 
-            if(count($cow->users) == 0){
+        if (count($user->cows_group) != 0) {
+
+            foreach ($user->cows_group as $cow_user) {
+                $cow = Cow::where("id", "!=", $cow_user->id)->get();
+
                 $listCows[] = $cow;
-            }else{
-                foreach($cow->users as $user_cow){
-    
-                    if($user_cow->id != $user->id ){
-                        $listCows[] = $cow;
-                    }
-               } 
             }
-               
-           }
-      
+        } else {
+            $listCows = $cows;
+        }
 
-      
+
 
         $data = [
             'cows_not_from_user' => $listCows,
@@ -117,6 +115,24 @@ class FarmerController extends Controller
 
 
         return $data;
+    }
+
+
+
+    public function remove_user_cow(Request $request)
+    {
+        $user_id =  $request->user_id;
+        $cow_id =  $request->cow_id;
+
+        $user = User::find($user_id);
+
+
+        $user->cows_group()->detach($cow_id);
+
+
+       
+
+        return 'removido';
     }
 
 
@@ -145,15 +161,28 @@ class FarmerController extends Controller
 
 
         return redirect(route('admin.home'));
+
+        
     }
 
 
     public function delete_farmer_action(Request $request)
     {
 
+        $id  =  $request->id;
 
+        $user = User::find($id);
 
-        User::where("id", "=", $request['id'])->delete();
+        if(isset($user)){
+            foreach($user->cows_group as $cow_related){
+                $user->cows_group()->detach($cow_related->id);
+            }
+    
+    
+            $user->delete();
+        }
+
+       
 
         return redirect(route('admin.home'));
     }

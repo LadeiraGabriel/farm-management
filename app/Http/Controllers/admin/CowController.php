@@ -132,10 +132,10 @@ class CowController extends Controller
     
             $validate = $request->validate([
                 'id' => 'required',
-                'name' => 'max:15',
-                'age' => 'max:3',
-                'weight' => 'max:5',
-                'user_id' => 'string',
+                'name' => 'max:15|nullable',
+                'age' => 'max:3|nullable',
+                'weight' => 'max:5|nullable',
+                
                 'image' => 'mimes:jpg,png,svg'
     
             ]);  
@@ -155,9 +155,9 @@ class CowController extends Controller
                 $data['weight'] = $request->weight;
             }
 
-            if($request->user_id){
+           /*  if($request->user_id){
                 $data['user_id'] = $request->user_id;
-            }
+            } */
     
             if(!isset($request->vaccinated)){
                 $data['is_vaccinated'] = 0;
@@ -181,11 +181,38 @@ class CowController extends Controller
         }
 
 
+        public function remove_cow_user(Request $request){
+
+
+         $user_id =  $request->user_id;
+        $cow_id =  $request->cow_id;
+
+        $cow = Cow::find($cow_id);
+
+
+        $cow->users()->detach($user_id);
+
+
+        return $cow->users;
+
+        }
+
 
         
         public function delete_cow_action(Request $request){
 
              $cow = Cow::find($request->id); 
+
+           $users_related =  $cow->users;
+
+           foreach($users_related as $user){
+
+                $cow->users()->detach($user->id);
+
+           }
+
+
+
 
           $imageCow =  public_path().'/assets/images/cows/'. $cow->image_path;
            unlink($imageCow);

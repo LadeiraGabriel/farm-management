@@ -4,9 +4,20 @@
     <div class="container-fluid p-0">
   
         <div class="row">
+
+
+            <div class="container  ">
+                <div class="row">
+                    <div class="col-md-10 offset-lg-2 pt-2  col-xxl-8 offset-xxl-2 " > 
+        
+                        <x-navegation_top isAdmin={{1}}  />
+                    </div>
+                </div>
+        
+            </div>
   
         <div class=" d-md-block col-md-2 side-admin " id="side--bar">
-          <x-navbar routeLogout="admin.logout" page="{{route('admin.new_cow')}}"  isAdmin={{1}} />
+          <x-navbar routeLogout="admin.logout" page="{{route('admin.home')}}"  isAdmin={{1}} />
         </div>
                   
           
@@ -16,9 +27,9 @@
    
   
   
-     <div class=" col-sm-10 offset-md-2 col-md-8  offset-xxl-2 col-xxl-5 ">
+     <div class=" col-sm-10 offset-md-2 col-md-4">
       <div class="p-2">
-        <x-navegation_top isAdmin={{1}} />
+       
 
 
 
@@ -28,11 +39,15 @@
                     <form enctype="multipart/form-data" action="{{route('admin.edit_farmer_action')}}" class=" d-flex flex-column form-custom py-3 " method="post">
                         @csrf
                        
+
+                        <input type="hidden"  name="id" value="{{$user->id}}"> 
+
+
                         <label for="name" >Nome:</label>
                             
                         
                        
-                        <input class="form-control form-control-md my-2" type="email" id="email" name="email" >
+                        <input class="form-control form-control-md my-2" type="name" placeholder="{{$user->name}}" id="name" name="name" >
                 
                         <label for="password">Senha:</label>
                         <span class="box--eye" >
@@ -69,7 +84,7 @@
             
             
             </div>
-            <div class="col-sm-10 my-5 offset-md-2 col-md-8  offset-xxl-2 col-xxl-5">
+            <div class="col-sm-10  col-md-4" style="">
            
            
                 <table id="datatable" class="table table-striped" style="width:100%">
@@ -98,7 +113,7 @@
                        
 
 
-                        <a class="btn btn-danger remove" data-token="{{csrf_token()}}" data-remove-cow="{{$cow->id}}" >
+                        <a class="btn btn-danger selector" data-route-add={{route('add_user_cow')}} data-route-remove={{route('remove_user_cow')}} data-token="{{csrf_token()}}" data-user="{{$user->id}}" data-cow="{{$cow->id}}" >
                               
                                - Remover    
                              </a>   
@@ -124,7 +139,7 @@
                        
 
 
-                        <a class=" btn btn-success add" data-route={{route('cows_from_users_or_not')}} data-token="{{csrf_token()}}" data-user="{{$user->id}}" data-cow="{{$cow->id}}"  >
+                        <a class=" btn btn-success selector" data-route-add={{route('add_user_cow')}} data-route-remove={{route('remove_cow_user')}} data-token="{{csrf_token()}}" data-user="{{$user->id}}" data-cow="{{$cow->id}}"  >
                             +  Adicionar   
                         </a>   
                         </td>

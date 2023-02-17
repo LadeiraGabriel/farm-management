@@ -18,6 +18,7 @@
     <div class="d-flex flex-column align-items-center mt-5">
 
          @if (!$isAdmin)  
+
          <div class="action-nagation-dash my-2 {{ $page == route('client.cows')  ? 'action-nagation-dash-selected' : '' }} ">
             <a href="{{route('client.cows')}}" >
                 <span>
@@ -39,8 +40,12 @@
 
 
        
-       @else 
-        <div class="action-nagation-dash my-2 {{$page == route('admin.home') ? 'action-nagation-dash-selected' : '' }} ">
+       @endif
+
+
+
+       @if($isAdmin)
+        <div class="action-nagation-dash my-2 {{$page == route('admin.home')   ? 'action-nagation-dash-selected' : '' }} ">
             <a href="{{route('admin.home')}}" >
                 <span>
                     <img src="/assets/images/home_svg.svg" alt="">

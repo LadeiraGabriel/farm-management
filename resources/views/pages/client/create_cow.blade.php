@@ -70,7 +70,7 @@
                 
                        
                         <div>
-                            <input type="submit" class="btn-farm mt-3 " value="Entrar">
+                            <input type="submit" class="btn-farm mt-3 " value="Enviar">
                             
                         </div>
                 

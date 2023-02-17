@@ -4,94 +4,7 @@
 
     
 
-    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Editar dados da Vaca</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{route('admin.edit_cows_action')}}" enctype="multipart/form-data" class=" d-flex flex-column  py-3" id="form_edit_cow" method="post">
-                    @csrf
-
-                    @method('PUT')
-                   
-                    <input type="hidden" name="id" id="id-cow" >
-
-                    <label for="name" >Nome:</label>
-                    
-                   
-                    <input class="form-control form-control-md my-2" type="text" id="name" name="name" >
-
-                    <label for="age" >Idade:</label>
-                    
-                   
-                    <input class="form-control form-control-md my-2" type="number" id="age" name="age" >
-            
-                    <label for="weight" >Peso:</label>
-                    
-                   
-                    <input class="form-control form-control-md my-2" type="number" id="weight" name="weight" >
-
-           
-                    <div class="my-2">
-                      <label for="other_owners "  >Outros Donos:</label>
-
-                   
-
-                          <select class="edit form-select" name="other_owners[]" multiple="multiple" style="width: 100%">
-                         
-                              @foreach ($farmers as $farmer)
-                              <option selected value="{{$farmer->id}}">
-                                  {{$farmer->name}}
-                              </option>    
-                              @endforeach
-
-                              
-                             
-                            </select>
-  
-
-                      </div>
-                   
-           
-                   
-
-                    <div class="my-2">
-                        <label for="image" >foto da vaca</label>
-
-                       <input class="form-control form-control-md " type="file" id="image" name="image" >
-
-
-                    </div>
-
-                       
-
-
-                       <div class="my-2">
-
-
-                       <label for="vaccinated" >Vacinada</label>
-
-                       <input class="form-check-input" type="checkbox" id="vaccinated" name="vaccinated" >
-                    </div>
-                    
-                   
-                    
-            
-                
-                    
-                
-                </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >cancelar</button>
-              <input type="submit" class="btn btn-success" form="form_edit_cow"  value="atualizar" />
-            </div>
-          </div>
-        </div>
-      </div> --}}
+   
 
 
     <div class="container-fluid p-0">
@@ -132,7 +45,7 @@
                  <div class=" col-xs-12  col-lg-6 col-xxl-4 flex-wrap my-5">
     
                   <div class="card " style="width: 18rem;">
-                     <img src="/assets/images/cows/{{$cow->image_path}}"  class="card-img-top" style="width: 300px; height: 200px; object-fit: contain" alt="...">
+                     <img src="/assets/images/cows/{{$cow->image_path}}"  class="card-img-top " style="width: 300px; height: 200px; " alt="...">
                      <div class="card-body ">
                       
                      
@@ -149,7 +62,7 @@
                          <div>
                              <p class="card-text">Vacinada: {{$cow->is_vaccinated ? 'sim' : 'não' }}</p>
                            @if ($is_admin)
-                           <p class="card-text"> Donos:  {{count($cow->users)}} </p>   
+                           <p class="card-text"> Donos:  {{count($cow->users) + 1}} </p>   
                            @endif
                             
                              
