@@ -18,7 +18,7 @@ class AuthClientController extends Controller
     public function login(){
 
         if(Auth::check()){
-            return redirect(route('client.cows'));
+            return redirect(route('client.my_cows'));
         }else{  
             return view('pages.client.login');
         }
@@ -39,7 +39,7 @@ class AuthClientController extends Controller
 
 
         if (Auth::attempt($userRequest)) {
-            return redirect(route('client.cows'));
+            return redirect(route('client.my_cows'));
         }else{
             return redirect(route('login_farmer'));
         }

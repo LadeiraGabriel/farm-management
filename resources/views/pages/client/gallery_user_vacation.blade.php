@@ -35,14 +35,14 @@
                     <h2 class="overflow-hidden">Vacas</h2>
                 </div>
                 
-                <div class="row d-flex justify-content-start my-3   ">
+                <div class="row d-flex justify-content-start my-3 parent-card  ">
                     
                   <div>
                     
                   </div>
                  @foreach ($cows as $cow)
                 
-                 <div class=" col-xs-12  col-lg-6 col-xxl-4 flex-wrap my-5">
+                 <div class=" col-xs-12 section-card  col-lg-6 col-xxl-4 flex-wrap my-5">
     
                   <div class="card " style="width: 18rem;">
                      <img src="/assets/images/cows/{{$cow->image_path}}"  class="card-img-top " style="width: 300px; height: 200px; " alt="...">
@@ -91,7 +91,7 @@
                          <div class="">
                              
              
-                             <a  class="btn btn-success"  href="{{route('client.edit_cow',$cow->id)}}"   {{-- data-bs-toggle="modal" data-bs-target="#exampleModal" --}}>
+                             <a  class="btn btn-success"  href="{{route('client.edit_cow',$cow->id)}}" >
                                  <span>
                                      <img src="/assets/images/edit_svg.svg"  alt="">
                                      editar    
@@ -99,11 +99,11 @@
                          </div>
              
                          <div class="">
-                             <a class="btn btn-danger" href="{{route('client.delete_cows_action',$cow->id)}}">
-                                 <span>
-                                     <img src="/assets/images/delete_svg.svg" class="object-fit-contain"   alt="">
+                             <a class="btn btn-danger removeCow" data-route-remove={{route('client.remove_user_cow')}} data-token="{{csrf_token()}}" data-user="{{$user->id}}" data-cow="{{$cow->id}}">
+                                
+                                   -
                                      remover    
-                                 </span> </a> 
+                                 </a> 
                          </div>
                          
                        </div>
@@ -135,14 +135,20 @@
                       
                      
                        <div class="row mb-2 card-content  "> 
-                        <div class="d-flex justify-content-between">
-                          <h5 class="card-title overflow-hidden d-flex " style="color: #6C6C6C; font-weight: 500;padding-left: 15px;">Nome: {{$cow->name}}</h5>
+
+
+                        <div class="d-flex justify-content-between ">
+                          <div>
+                          <h5 class=" overflow-hidden " style="color: #6C6C6C; font-weight: 500;">Nome: {{$cow->name}}</h5>
+                        </div>
   
-                          <div class="card-text d-flex "> 
-                              
-                            <img src="assets/images/star.svg" width="20px" alt="">
+                          <div class=" d-flex "> 
+                            
+                            <div>
+                            <img src="assets/images/star.svg"  width="20px" alt="">
+                          </div>
   
-                           <div class="ms-1">Criador</div> 
+                           <p class="ms-1">Criador</p> 
                          </div>   
                  
                          </div>
@@ -161,7 +167,7 @@
                             
                              
 
-                           Donos:  
+                           Donos:  {{count($cow->users) + 1  }}
                            </div>   
                    
                             
@@ -183,7 +189,7 @@
                          <div class="">
                              
              
-                             <a  class="btn btn-success"  href="{{route('client.edit_cow',$cow->id)}}"   {{-- data-bs-toggle="modal" data-bs-target="#exampleModal" --}}>
+                             <a  class="btn btn-success"  href="{{route('client.edit_cow',$cow->id)}}"   >
                                  <span>
                                      <img src="/assets/images/edit_svg.svg"  alt="">
                                      editar    

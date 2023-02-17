@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-10 offset-lg-2 pt-2  col-xxl-8 offset-xxl-2 " > 
 
-                <x-navegation_top isAdmin={{0}}  />
+                <x-navegation_top isAdmin={{1}}  />
             </div>
         </div>
 
@@ -96,7 +96,7 @@
                     
                            
                             <div>
-                                <input type="submit" class="btn-farm mt-3 " value="Entrar">
+                                <input type="submit" class="btn-farm mt-3 " value="Enviar">
                                 
                             </div>
                     
@@ -145,7 +145,10 @@
                                     <td>{{$cow->user->name}} </td>
                                     <td>{{$cow->user->email}} </td>
                                     <td>{{count($cow->user->cows)}} </td>
-                                    <td> </td>
+                                    <td>
+                                        <img src="/assets/images/star.svg" width="20px" alt="">
+                                        
+                                        criador</td>
                                    
                                 </tr>
                               @foreach ($cow->users as $user)

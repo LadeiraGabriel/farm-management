@@ -132,7 +132,7 @@ class FarmerController extends Controller
 
        
 
-        return 'removido';
+        return  $user->cows_group;
     }
 
 

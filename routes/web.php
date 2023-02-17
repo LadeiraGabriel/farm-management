@@ -44,7 +44,7 @@ Route::middleware(['farmer'])->group(function () {
 
   Route::get('/edit-cow/{id}',[ClienteCowController::class,'edit_cow'])->name('client.edit_cow');
 
-  Route::put('/edit-cow', [ClienteCowController::class, 'edit_cow_action'])->name('client.edit_cows_action');
+  Route::post('/edit-cow', [ClienteCowController::class, 'edit_cow_action'])->name('client.edit_cows_action');
 
  
 

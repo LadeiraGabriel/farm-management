@@ -36,7 +36,19 @@ class ClienteCowController extends Controller
         $listCows = [];
 
         if(count($user->cows_group) == 0){
-            $listCows = $cows;
+
+            if(count($user->cows) != 0){
+                foreach($user->cows as $cow_solo){
+                    $listId[] = $cow_solo->id; 
+                }
+    
+    
+                $listCows = Cow::whereNotIn('id',$listId)->get();
+            }else{
+                $listCows = $cows;
+            }
+           
+            
         }else{
 
             foreach($user->cows_group as $cow_user){
@@ -214,7 +226,7 @@ class ClienteCowController extends Controller
         }
        
 
-       return redirect(route('client.cows'));
+       return redirect(route('client.my_cows'));
     }
 
 

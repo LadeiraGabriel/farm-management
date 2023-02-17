@@ -27,6 +27,7 @@ const buttonSelector = document.querySelectorAll(".selector");
 
 const removeCow = document.querySelectorAll(".remove");
 
+const  removeListCow = document.querySelectorAll(".removeCow");
 
 const addCow = document.querySelectorAll(".add");
 
@@ -158,6 +159,39 @@ addCow.forEach(button => {
 
     })
 })
+
+
+
+removeListCow.forEach(button => {
+    button.addEventListener("click", async event => {
+
+
+        const { cow, user, token, routeRemove } = event.target.dataset
+
+
+        const response = await updateCowsUsers(routeRemove, token, user, cow);
+
+       
+
+        
+
+        itemCard.forEach(card => {
+            card.removeChild(button.closest('.section-card'));
+
+            console.log(card.children)
+           
+        })
+
+       // itemCard.removeChild(button.closest('.parent-card'));
+
+
+
+
+
+
+    })
+})
+
 
 
 //select2
