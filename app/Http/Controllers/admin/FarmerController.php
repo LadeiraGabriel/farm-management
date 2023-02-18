@@ -173,17 +173,31 @@ class FarmerController extends Controller
 
         $user = User::find($id);
 
-        if(isset($user)){
+        $cows = $user->cows;
+
+
+       // return $cows[0]->users;
+        
+
+            foreach($cows as $cow){
+                foreach($cow->users as $user_ref){
+                    $user_ref->cows_group()->detach($cow->id);
+                }
+            }
+
+      
+
+       
             foreach($user->cows_group as $cow_related){
                 $user->cows_group()->detach($cow_related->id);
             }
     
     
             $user->delete();
-        }
+     
 
        
 
-        return redirect(route('admin.home'));
+        return redirect(route('admin.home')); 
     }
 }
