@@ -99,12 +99,29 @@
                         </tr>
                     </thead>
                     <tbody id="body-table">
+
+
+                        @foreach($user->cows as $cow)
+                        
+                        <tr>
+                            <td>{{$cow->name}} </td>
+                            <td> {{$cow->is_vaccinated  ? 'Sim' : 'não'}}       </td>
+                            <td>  {{count($cow->users) + 1}}   </td>
+
+                            <td>
+                                <img src="/assets/images/star.svg" width="20px" alt="">
+                                
+                                criador
+                            </td>
+
+                        @endforeach
+
                        @foreach($user->cows_group as $cow)
                         
                         <tr>
                             <td>{{$cow->name}} </td>
                             <td> {{$cow->is_vaccinated  ? 'Sim' : 'não'}}       </td>
-                            <td>  {{ count($cow->users)}}      </td>
+                            <td>   {{ count($cow->users) + 1 }}     </td>
 
                             <td>
                                 
@@ -130,7 +147,7 @@
                         <tr>
                             <td>{{$cow->name}} </td>
                             <td> {{$cow->is_vaccinated  ? 'Sim' : 'não'}}       </td>
-                            <td>  {{ count($cow->users)}}      </td>
+                            <td>  {{ count($cow->users) + 1 }}       </td>
 
                             <td>
                                 

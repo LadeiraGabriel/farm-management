@@ -102,10 +102,11 @@ class ClienteCowController extends Controller
             'name','age','weight', 
         ]);
 
-        if($vaccinated['vaccinated']){
+        if(!isset($request->vaccinated)){
             $data['is_vaccinated'] = 0;
+        }else{
+            $data['is_vaccinated'] = 1;
         }
-        $data['is_vaccinated'] = 1; 
 
         $extension = $request->image->extension();
 

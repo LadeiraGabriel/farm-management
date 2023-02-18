@@ -114,7 +114,7 @@
                         <th  class="body-min" scope="row">1</th>
                         <td class="body-min">{{$user->name}}</td>
                         <td class="body-min">{{$user->email}}</td>
-                        <td class="body-min">{{ count( $user->cows)}}</td>
+                        <td class="body-min">{{ count( $user->cows) + count($user->cows_group)}} </td>
                         <td>
                           <a class="btn btn-primary"   data-bs-toggle="modal" data-bs-target="#exampleModal">
                               

@@ -49,14 +49,14 @@ class FarmerController extends Controller
         $listCows = [];
 
         if(count($user->cows_group) == 0){
-            $listCows = $cows;
+            $listCows = Cow::where('user_id',"<>", $user->id)->get();
         }else{
-
+    
             foreach($user->cows_group as $cow_user){
                 $listId[] = $cow_user->id; 
             }
     
-            $listCows = Cow::whereNotIn('id',$listId)->get();
+            $listCows = Cow::where('user_id',"<>", $user->id)->whereNotIn('id',$listId)->get();
         }
 
         

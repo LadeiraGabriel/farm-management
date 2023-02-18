@@ -2,53 +2,7 @@
 <x-admin.main >
 
 
-   {{--  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Editar dados do Fazendeiro</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{route('admin.edit_farmer_action')}}" id="form-edit-farmer" class=" d-flex flex-column  py-3" id="form_edit_farmer" method="post">
-                    @csrf
-                   
-
-                    <input type="hidden" name="id" id="id-farmer" >
-
-
-                    <label for="name" >Nome:</label>
-        
-                    <input class="form-control form-control-md my-2" type="text"  id="name" name="name" >
-
-                    
-                    
-                   
-                    <input class="form-control form-control-md my-2" type="hidden" id="email" name="email" >
-            
-                    <label for="password">Senha:</label>
-                    <span class="box--eye" >
-                        <input class="form-control form-control-md my-2" type="password" id="password" name="password" >
-        
-                        <img class="eye" src="/assets/images/eye_no_visibility.png" alt="">
-                         </span>
-            
-                
-            
-                    
-                    
-                    
-                
-                </form>
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >cancelar</button>
-              <input type="submit" class="btn btn-success" form="form-edit-farmer"  value="atualizar" />
-            </div>
-          </div>
-        </div>
-      </div> --}}
+   
 
 
 <div class="container-fluid p-0">

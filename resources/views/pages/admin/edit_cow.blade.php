@@ -19,7 +19,7 @@
     </div>
   
         <div class=" d-md-block col-md-2 side-admin " id="side--bar">
-          <x-navbar routeLogout="admin.logout" page="{{route('admin.new_cow')}}"  isAdmin={{1}} />
+          <x-navbar routeLogout="admin.logout" page="{{route('admin.home')}}"  isAdmin={{1}} />
         </div>
                   
           
@@ -64,10 +64,7 @@
                             <label for="weight" >Peso:</label>
                             <input class="form-control form-control-md my-2" placeholder="{{$cow->weight}}" type="number" id="weight" name="weight" >
     
-                            <div class="my-2">
-                            <label for="user_id" >Criador:  {{$cow->user->name}}  </label>
-                          
-                            </div>
+                       
                             
                            
                             
@@ -148,7 +145,8 @@
                                     <td>
                                         <img src="/assets/images/star.svg" width="20px" alt="">
                                         
-                                        criador</td>
+                                        criador
+                                    </td>
                                    
                                 </tr>
                               @foreach ($cow->users as $user)
@@ -171,6 +169,31 @@
                    
                                 </tr>
                                 @endforeach
+
+                                @foreach ($users_not_has_cow as $user)
+                                <tr>
+                                    <td>{{$user->name}} </td>
+                                    <td> {{$user->email}}       </td>
+                                    <td>  {{ count($user->cows) + count($user->cows_group)}}      </td>
+        
+                                    <td>
+                                        
+                                   
+                                
+                                <a class="btn btn-success selector" data-route-add={{route('add_user_cow')}} data-route-remove={{route('remove_user_cow')}} data-route-remove={{route('remove_cow_user')}} data-token="{{csrf_token()}}" data-user="{{$user->id}}" data-cow="{{$cow->id}}" >
+                                    
+                                       
+                                       + Adicionar    
+                                    </a>   
+                                </td>
+        
+                   
+                                </tr>
+                                @endforeach
+
+
+
+                               
                             </tbody>
                             <tfoot>
                                 <tr>

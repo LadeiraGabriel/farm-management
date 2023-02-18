@@ -106,20 +106,36 @@ class CowController extends Controller
 
         public function edit_cow(Request $request){
 
+            $id =  $request->id;
 
-
-            $cow = Cow::find($request->id);
+            $cow = Cow::find($id); // virar cow
+            $users = User::where("is_admin","=",0)->where('id',"<>",$cow->user->id)->get(); // buscar usuarios
+            $listCows = [];  
+    
+            if(count($cow->users) == 0){ // cow usando a relação de users
+                $listCows = $users;
+            }else{
+    
+                foreach($cow->users as $user){
+                    $listId[] = $user->id; 
+                }
+    
+               
+        
+                $listCows = User::where("is_admin",0)->where('id',"<>",$cow->user->id)->whereNotIn('id',$listId)->get();
+            }
+    
             
-            $users = User::all();
-
+    
+          
+    
+            $data = [
+                'users_not_has_cow' => $listCows,
+                'cow' => $cow
+            ];
 
            
-        
-            if(isset($cow)){
-                $data['cow'] = $cow;
-            }else{
-                $data = [];
-            }
+
 
            
 
