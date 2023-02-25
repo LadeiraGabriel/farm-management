@@ -1,1 +1,1 @@
-# Projeto de Gerenciamento de relacionamento entre  fazendeiros e suas vacas.
+# Projeto de Gerenciamento de relacionamento entre  fazendeiros e vacas.
